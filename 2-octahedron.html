@@ -1,0 +1,63 @@
+<!--
+HW7: WebGL Renderer
+Comp 630 W'16 - Computer Graphics
+Phillips Academy
+2015-2-19
+
+By Jenny Huang
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+<title>Octahedron</title>
+
+<script id="vertex-shader" type="x-shader/x-vertex">
+attribute  vec4 vPosition;
+attribute  vec4 vColor;
+
+// fColor is a varying because it is a variable declared in the vertex shader
+// that is shared with the fragment shader.
+varying vec4 fColor;
+
+void main()
+{
+    // fColor will be the color passed to the rasterizer and assigned to the
+    // rendered vertex by the fragment shader. vColor is the color tagged on
+    // input to each vertex.
+    fColor = vColor;
+
+    // gl_Position is the position that is passed to the rasterizer and must be
+    // output by every vertex shader. vPosition is the position tagged on input
+    // to each vertex. This shader is simple pass-through of vertices.
+    gl_Position = vPosition;
+}
+</script>
+
+<script id="fragment-shader" type="x-shader/x-fragment">
+precision mediump float;
+
+varying vec4 fColor;
+
+void
+main()
+{
+    // gl_FragColor is the the color of the fragment. fColor is the color
+    // declared in the vertex shader and assigned to the rendered vertex by
+    // the fragment shader.
+    gl_FragColor = fColor;
+}
+</script>
+
+<script type="text/javascript" src="../Common/webgl-utils.js"></script>
+<script type="text/javascript" src="../Common/initShaders.js"></script>
+<script type="text/javascript" src="../Common/MV.js"></script>
+<script type="text/javascript" src="2-octahedron.js"></script>
+</head>
+
+<body>
+<canvas id="gl-canvas" width="512" height="512">
+Oops ... your browser doesn't support the HTML5 canvas element
+</canvas>
+</body>
+</html>

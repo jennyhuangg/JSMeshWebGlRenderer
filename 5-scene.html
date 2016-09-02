@@ -1,0 +1,82 @@
+<!--
+HW7: WebGL Renderer
+Comp 630 W'16 - Computer Graphics
+Phillips Academy
+2015-2-19
+
+By Jenny Huang
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+<title>Scene</title>
+
+<script id="vertex-shader" type="x-shader/x-vertex">
+attribute  vec4 vPosition;
+// Normal vector.
+attribute  vec4 vNorm;
+
+// Instance transform for world coordinates.
+uniform  mat4 xform;
+// World to Canonical View Transform matrix.
+uniform  mat4 cXform;
+// Look vector.
+uniform  vec4 vLook;
+// Base color for the shape.
+uniform  vec4 baseColor;
+
+// fColor is a varying because it is a variable declared in the vertex shader
+// that is shared with the fragment shader.
+varying vec4 fColor;
+
+void main()
+{
+    // Transform and normalize the normal vector. Shades each triangle's color
+    // based on the cosine of the angle between it and the look vector.
+    fColor = baseColor * dot(vLook, normalize(xform * vNorm));
+    // set A to 1.0.
+    fColor.w = 1.0;
+
+    // First, apply instance trnsform to the vertex. Then, apply the world to
+    // canonical view transform.
+    gl_Position = cXform * xform * vPosition;
+    // // Perspective division?
+    // gl_Position = vec4(
+    //   gl_Position[0]/gl_Position[3],
+    //   gl_Position[1]/gl_Position[3],
+    //   gl_Position[2]/gl_Position[3],
+    //   1.0
+    // );
+
+}
+</script>
+</script>
+
+<script id="fragment-shader" type="x-shader/x-fragment">
+precision mediump float;
+
+varying vec4 fColor;
+
+void
+main()
+{
+    // gl_FragColor is the the color of the fragment. fColor is the color
+    // declared in the vertex shader and assigned to the rendered vertex by
+    // the fragment shader.
+    gl_FragColor = fColor;
+}
+</script>
+
+<script type="text/javascript" src="../Common/webgl-utils.js"></script>
+<script type="text/javascript" src="../Common/initShaders.js"></script>
+<script type="text/javascript" src="../Common/MV.js"></script>
+<script type="text/javascript" src="5-scene.js"></script>
+</head>
+
+<body>
+<canvas id="gl-canvas" width="512" height="512">
+Oops ... your browser doesn't support the HTML5 canvas element
+</canvas>
+</body>
+</html>

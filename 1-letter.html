@@ -1,0 +1,59 @@
+<!--
+HW7: WebGL Renderer
+Comp 630 W'16 - Computer Graphics
+Phillips Academy
+2015-2-19
+
+By Jenny Huang
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+<title>J Letter</title>
+
+<!-- Shaders are programs that runs on the GPU that do computations
+on each indivdual vertex. Written inline.-->
+<script id="vertex-shader" type="x-shader/x-vertex">
+
+// Attributes are pieces of info tagged to each individual vertex on input.
+attribute vec4 vPosition;
+
+void
+main()
+{
+    // gl_Position is the position that is passed to the rasterizer and must be
+    // output by every vertex shader. vPosition is the position tagged on input
+    // to each vertex. This shader is simple pass-through of vertices.
+    gl_Position = vPosition;
+}
+</script>
+
+<!-- Shaders are programs that runs on the GPU that do computations
+on each indivdual fragment. Written inline. -->
+<script id="fragment-shader" type="x-shader/x-fragment">
+
+// Sets the precision to medium precision.
+precision mediump float;
+
+void
+main()
+{
+    // gl_FragColor is a built-in variable that assigns a four-dimensional
+    // RGBA color to each fragment.
+    gl_FragColor = vec4( 1.0, 0.7, 0.4, 1.0 ); // Pretty pastel orange
+}
+</script>
+
+<script type="text/javascript" src="../Common/webgl-utils.js"></script>
+<script type="text/javascript" src="../Common/initShaders.js"></script>
+<script type="text/javascript" src="../Common/MV.js"></script>
+<script type="text/javascript" src="1-letter.js"></script>
+</head>
+
+<body>
+<canvas id="gl-canvas" width="512" height="512">
+Oops ... your browser doesn't support the HTML5 canvas element
+</canvas>
+</body>
+</html>
