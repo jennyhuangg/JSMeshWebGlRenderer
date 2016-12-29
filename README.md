@@ -1,4 +1,5 @@
 Assigment Overview
+
 For this assignment, you will build a projection renderer on top of your scenegraph work from HW4.
 * Part 1: Add color to your HW4 scenes by inserting new “surface” nodes to the scenegraph.
 * Part 2: Define the posing method for a camera and the transformations used to put world-space points into the canonical view volume.
