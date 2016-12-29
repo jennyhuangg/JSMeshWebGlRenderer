@@ -8,8 +8,4 @@ For this assignment, you will build a projection renderer on top of your scenegr
 
 See scene.py for resulting screenshots: one of a wireframe rendering, one of a rendering produced by Mayavi, and three produced by my raster renderer.
 
-CS630: Software Design
-
-Phillips Academy
-
-Winter 2016
+CS630: Software Design | Phillips Academy | Winter 2016
